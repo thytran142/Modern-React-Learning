@@ -151,4 +151,12 @@ And you can run ``npm run build`` , you can see dist folder is created and bundl
 Check the commit "Chapter 2: Hot-reloading with react-hot-loader"
 
 **Create the todoList component**
-Check the commit 
+Check the commit "Chapter 2: Putting the app together"
+The app is very basic with ```const TodoList = ({ todos = [{text:"Hello"}] }) => (
+                                  <div className="list-wrapper">
+                                      <NewTodoForm />
+                                      {todos.map(todo => <TodoListItem todo={todo} />)}
+                                  </div>
+                              );``` and you can see Hello is a hard-code item.
+
+
