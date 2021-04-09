@@ -57,4 +57,56 @@ So we create 3 files under our src folder:
 3. App.css
 
 App.js and App.css contain the code and the styling respectively, for the root component of our application, which for now will be the only component in our application.
-Check the code from the commit 
+Check the code from the commit "Chapter 2: The index.js and the app component".
+
+Install React as below:
+```
+npm install react react-dom
+```
+**Building and Serving with webpack**
+```
+npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
+```
+What we are going to have webpack do for us is to take the code in our source directory and perform some operations on it like converting the ES6 syntax and JSX common JS and then host our public directory so that we can view our app in a browser. 
+
+Create a webpack.config.js that will allow us to define what exactly we want webpack to do with our source code.
+
+Entry point for webpack will be:
+```
+entry: './src/index.js',
+```
+Specify the development mode here: `` mode: 'development',``. Now we have to specify our rules for exactly how we want webpack to transform our code.
+First rule we will define transform our ES6 code to regular javascript:
+```
+rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules)/,
+                loader: 'babel-loader',
+                options: { presets: ["@babel/env"] }
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+```
+Test will match all JS and JSX files. We don't want to look inside our node modules folder so we have exclude path. Then the loader we want to use is babel-loader and finally we want to specify options that is going to say presets babel/env.
+
+Next we want to add the style loader and the CSS loader, and that allow us to do this thing where we import a CSS file at the top of our React Component such as:
+```
+import './App.css';
+
+const App = () => (
+    <div className="App">
+        <h1>Hello world</h1>
+    </div>
+);
+```
+In order to run the project, do as the below:
+```
+npx webpack-dev-server --mode development
+```
+You can navigate to http://localhost:3000 and see the app we just created.
+
+Look at the commit: ''
