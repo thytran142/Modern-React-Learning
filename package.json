@@ -4,7 +4,9 @@
   "description": "**Meet React ecosystem**\r 1. React Redux: Manage our state in a React application in an effective and relatively bug free way. And to do this, it uses what's called the Flux architecture.\r 2. Redux Thunk (or Thunk): separate side effects of our application: allows us to do is separate out the so called side effects of our application. And side effects are permanent changes such as modifying user data on a server or uploading an article for example. And the idea is to avoid putting this logic into our components. Our components are meant to display our data. They shouldn't be worrying about making network requests and Thunk gives us a place to put this logic.\r 3. Reselect: The purpose of selectors is to abstract a way the details of hour our data is stored in this state.\r 4. Styled components: give us a nicer way of managing the appearance of our components than using separate css files particularly when the appearance of a component depends on the state in some way.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx webpack-dev-server --mode development",
+    "build": "npx webpack --mode development"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +18,7 @@
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
-    "react-hot-loader": "^4.12.19",
+    "react-hot-loader": "^4.13.0",
     "style-loader": "^1.1.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",

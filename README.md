@@ -109,4 +109,44 @@ npx webpack-dev-server --mode development
 ```
 You can navigate to http://localhost:3000 and see the app we just created.
 
-Look at the commit: ''
+Look at the commit: 'Chapter 2: Building and serving with webpack'
+
+_Hot reloading with react-hot-loader_
+The problem is whenever we make a change to our code, we have to physically refresh our browser in order to see the changes.
+
+```
+npm install --save-dev react-hot-loader
+```
+
+After that, stop the process. Inside the App.js, import the hot:
+```
+import { hot } from 'react-hot-loader';
+```
+
+And at the end:
+```
+export default hot(module)(App);
+```
+
+Run the process again and you will see the change automatically without refreshing the browser.
+
+In package.json, add another script:
+```
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx webpack-dev-server --mode development"
+  },
+```
+Now we can open a terminal and run 
+```
+npm run dev
+```
+One more thing to note here is that while we're running our webpack server, there isn't a dist folder as we might expect. That's because when webpack dev server does is holds this dist folder in memory and serves it, and then deletes it when we stop it.
+If we want to actually build our react app so we can see files. Create a new script:
+```
+ "build": "npx webpack --mode development"
+```
+And you can run ``npm run build`` , you can see dist folder is created and bundle.js file is created.
+
+Check the commit 
+
