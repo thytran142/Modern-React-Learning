@@ -148,5 +148,7 @@ If we want to actually build our react app so we can see files. Create a new scr
 ```
 And you can run ``npm run build`` , you can see dist folder is created and bundle.js file is created.
 
-Check the commit 
+Check the commit "Chapter 2: Hot-reloading with react-hot-loader"
 
+**Create the todoList component**
+Check the commit 
