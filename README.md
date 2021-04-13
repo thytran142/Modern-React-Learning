@@ -391,5 +391,139 @@ Think about TodoList component. It's hardwired to display all of the todos in ou
 elsewhere in our app and display different collections of todos, example completed todos and the other one display all uncompleted todos. It wouldn't make sense to have our TodoList component 
 connected to the store. It would make more sense to have some parent component that was connected to the store and have it simply display 2 identical todo list but with different data.
 
-_Adding a new Redux flow: Mark a task completed_
+**Redux Thunk**
+Even with Redux in place, our components still have to contain the logic for doing all the asynchronous operation, such as fetching or updating server data. We call these softs of operations side effects.
+
+Conceptually we want our components to have 1 concern: correctly displaying data given to them. So these side effects should be moved out of components. We can use side-effect libraries in our application: Redux Thunk or Redux Saga.
+
+Redux Saga is more popular but Redux Thunk is simpler. 
+
+_How does Redux Thunk work_
+Redux Thunk works by sort of tapping into the normal Redux dataflow. That is, if we have our normal unidirectional dataflow, where our components trigger actions, 
+those actions cause predictable changes to the data in our Redux store, and these data changes are then reflected in our coponents, Redux Thinks allows us to add a sort of fork into this loop where 
+we can put the logic for our side effects.
+
+Component dispatch some actions to reducers and to redux store, or component dispatch some thunk, and it fetches some data from the server.
+
+We have a user profile page, we want app loads user data from the server.
+Without Redux Thunk, we fetch data from componentDidMount, or useEffect hooks, once data is loaded, we dispatch load_user_success or load_user_error to redux.
+
+We don't want that happens in our component!
+
+
+Redux action: dispatch({ type, payload });
+
+Redux Thunk we dispatch a function.
+
+```
+npm install redux-thunk redux-devtools-extension @babel/runtime
+npm install --save-dev @babel/plugin-transform-runtime
+```
+Add @babel/plugin-transform-runtime to our .babelrc:
+
+```
+ "plugins": [
+    "@babel/plugin-transform-runtime"
+  ]
+```
+
+Under our store.js:
+
+```
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from "redux-devtools-extension";
+import {createStore, combineReducers, applyMiddleware} from "redux";
+
+export const configureStore = () => createStore(
+    persistedReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
+);
+```
+
+_Create a thunk_
+
+Create thunks.js inside `src>todos`
+
+```
+export const displayAlert = () => () => {
+    alert('Hello');
+}
+```
+(It's a function inside a function)
+
+So to demo, we modify our TodoList,js:
+
+```
+const mapDispatchToProps = dispatch => ({
+    onRemovePressed: text => dispatch(removeTodo(text)),
+    onCompletedPressed: text => dispatch(markTodoAsCompleted(text)),
+    onDisplayAlertClicked: () => dispatch(displayAlert())
+})
+
+```
+Pass it to TodoList component props:
+```
+const TodoList = ({ todos = [], onRemovePressed, onCompletedPressed, onDisplayAlertClicked }) => (
+    <div className="list-wrapper">
+        <NewTodoForm />
+        {todos.map((todo, i) => <TodoListItem todo={todo} key={i} onRemovePressed={onRemovePressed}
+                                              onCompletedPressed={onDisplayAlertClicked} />)}
+    </div>
+);
+```
+
+We have a mock server (assuming) with:
+
+GET /todos 
+POST /todos (unique id, createdAt, isCompleted)
+POST /todos/:id/completed
+DELETE /todos/:id
+
+Head to `src/todos/thunks.js`,
+```
+export const loadTodos = () => async (dispatch, getState) => {
+
+}
+```
+The function we return here gets passed 2 arguments when the thunk is triggered. Dispatch which we can use to dispatch other redux action 
+from inside our thunk and getState, which is a function that we can use to get access to the current state of the redux store.
+
+Comes to actions.js:
+
+```
+export const LOAD_TODOS_IN_PROGRESS = 'LOAD_TODOS_IN_PROGRESS';
+export const loadTodosInProgress = () => ({
+    type: LOAD_TODOS_IN_PROGRESS,
+});
+
+export const LOAD_TODO_SUCCESS = 'LOAD_TODO_SUCCESS';
+export const loadTodosSuccess = todos => ({
+    type: LOAD_TODO_SUCCESS,
+    payload: { todos },
+});
+
+export const LOAD_TODOS_FAILURE = 'LOAD_TODO_FAILURE';
+export const loadTodosFailure = () => ({
+    type: LOAD_TODOS_FAILURE
+});
+```
+
+Inside Thunks.js:
+```
+export const loadTodos = () => async (dispatch, getState) => {
+    try{
+        dispatch(loadTodosInProgress());
+        const response = await fetch('http://localhost:8080/todos/');
+        const todos = await response.json();
+        dispatch(loadTodosSuccess(todos));
+    }catch(e) {
+        dispatch(loadTodosFailure());
+        dispatch(displayAlert(e));
+    }
+}
+```
+
+Check the commit "Chapter 4: Redux Thunk"
 

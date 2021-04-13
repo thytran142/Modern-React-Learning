@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Modern-React-Learning.iml" filepath="$PROJECT_DIR$/.idea/Modern-React-Learning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server/.idea/react-ecosystems-server.iml" filepath="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server/.idea/react-ecosystems-server.iml" />
     </modules>
   </component>
 </project>

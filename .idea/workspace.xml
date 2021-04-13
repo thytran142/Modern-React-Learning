@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b511cfdb-b9f3-413f-904b-81ee78508be2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/todos/thunks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Modern-React-Learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Modern-React-Learning.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/NewTodoForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/NewTodoForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/TodoListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoListItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/actions.js" afterDir="false" />
@@ -13,6 +21,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,12 +41,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/nodejs/node.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="js.build_tools.npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -42,8 +64,31 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="install mock" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server/react-ecosystems-server/package.json" />
+      <command value="install" />
+      <node-interpreter value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server/react-ecosystems-server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.install mock" />
+      <item itemvalue="npm.dev" />
+      <item itemvalue="npm.start" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -57,7 +102,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617994634699</updated>
       <workItem from="1617994635747" duration="12000" />
-      <workItem from="1618331030960" duration="3218000" />
+      <workItem from="1618331030960" duration="14158000" />
     </task>
     <servers />
   </component>
