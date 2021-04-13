@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b511cfdb-b9f3-413f-904b-81ee78508be2" name="Default Changelist" comment="" />
+    <list default="true" id="b511cfdb-b9f3-413f-904b-81ee78508be2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/TodoListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/reducers.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1qwdYYyErAdCBNVTkhrrvOQHrVt" />
   <component name="ProjectViewState">
@@ -14,8 +24,29 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/nodejs/node.exe" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -26,6 +57,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617994634699</updated>
       <workItem from="1617994635747" duration="12000" />
+      <workItem from="1618331030960" duration="3218000" />
     </task>
     <servers />
   </component>

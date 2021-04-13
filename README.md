@@ -369,3 +369,27 @@ ReactDOM.render(
     document.getElementById("root"));
 
 ```
+
+**Redux Best Practices**
+_When you connect components to the Redux store, your file should export both the unconneted and connected versions of that component_
+```
+export const TodoList = ...
+export default connect(...)(TodoList); // Our application
+```
+
+Your tests shouldn't care whether your component is connected or not. Your tests should simply see whether or not your component renders with correct JS given a specific set of props.
+
+_Keep Redux actions and async operations out of your reducers._
+
+You should never trigger any other actions from inside your reducers or perform any kind of asynchronous operations such as fetching data from the network.
+
+You should remember that reducers are meant to take the current state of the Redux store and combine it with an action to get the updated state. 
+
+_Think carefully about connecting components. Connecting a given component to the Redux store has the potential to make that component less reusable from the point of view of the rest of our application._
+
+Think about TodoList component. It's hardwired to display all of the todos in our Redux store. And this works since that's how our application is designed. However if we want to reuse this TodoList 
+elsewhere in our app and display different collections of todos, example completed todos and the other one display all uncompleted todos. It wouldn't make sense to have our TodoList component 
+connected to the store. It would make more sense to have some parent component that was connected to the store and have it simply display 2 identical todo list but with different data.
+
+_Adding a new Redux flow: Mark a task completed_
+
