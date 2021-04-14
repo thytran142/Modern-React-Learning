@@ -662,3 +662,132 @@ const TodoItemContainerWithWarning = styled(TodoItemContainer)`
  const Container = todo.isCompleted ? TodoItemContainer : TodoItemContainerWithWarning;
 ```
 
+**Testing**
+
+```
+npm install --save-dev mocha chai
+npm install --save-dev @babel/register
+```
+
+Under package.json:
+
+```
+"test": "mocha \"src/**/*.test.js\" --require @babel/register --recursive",
+```
+Testing reducers.test.js:
+```
+import {expect} from 'chai';
+import {todos} from '../reducers';
+
+describe('The todos reducer', () => {
+    it('Add a new todo when CREATE_TODO action is received', {
+        var fakeTodo = {text: 'hello', isCompleted: false}
+        var fakeAction = {
+            type: 'CREATE_TODO',
+            payload: {
+                todo: fakeTodo
+            }
+        }
+        var originalState = {isLoading: false, data: []}
+        var expected = {
+            isLoading: false,
+            data: [fakeTodo],
+        }
+
+        var actual = todos(originalState, fakeAction)
+        expect(actual).to.deep.equal(expected)
+    });
+});
+```
+Testing thunks.test.js:
+```
+npm install --save-dev sinon node-fetch fetch-mock
+```
+ Look at the function:
+
+```
+export const loadTodos = () => async (dispatch) => {
+    try{
+        dispatch(loadTodosInProgress());
+        const response = await fetch('http://localhost:8080/todos/');
+        const todos = await response.json();
+        dispatch(loadTodosSuccess(todos));
+    }catch(e) {
+        dispatch(loadTodosFailure());
+        dispatch(displayAlert(e));
+    }
+}
+```
+
+```
+import 'node-fetch';
+import fetchMock from 'fetch-mock';
+import { expect } from 'chai';
+import sinon, {fake} from 'sinon';
+import { loadTodos } from "../thunks";
+
+
+describe('The loadTodos thunk', () => {
+    it('dispatches the actions in the success scenario', () => {
+        const fakeDispatch = sinon.spy();
+
+        // What we want to fake fetch returned?
+        const fakeTodos = [{ text: '1'}, {text: '2'}];
+        // When thunks get this URL, it will fake the response
+        fetchMock.get('http://localhost:8080/todos', fakeTodos);
+
+        const expectedFirstAction = { type: 'LOAD_TODO_IN_PROGRESS'};
+        const expectedSecondAction = { type: 'LOAD_TODOS_SUCCESS', payload: { todos: fakeTodos }};
+
+        await loadTodos()(fakeDispatch);
+
+        // Define exactly what we want the actions?
+
+        
+        expect(fakeDispatch.getCall(0).args[0]).to.deep.equal(expectedFirstAction);
+        expect(fakeDispatch.getCall(1).args[0]).to.deep.equal(expectedSecondAction);
+
+        fetchMock.reset();
+    })
+})
+```
+
+_Testing styled component_
+Test the logic we put inside them.
+
+```
+const TodoItemContainer = styled.div`
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 8px;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 4px 8px grey;
+`;
+
+const TodoItemContainerWithWarning = styled(TodoItemContainer)`
+  border-bottom: ${props => (new Date(props.createdAt) > new Date(Date.now() - 8640000 * 5)) ? 'none' : '2px solid red'};
+`
+```
+
+Modify the logic so we can test:
+```
+export const getBorderStyleForDate = (startingDate, currentDate) => {
+    return (startingDate > new Date(currentDate - 8640000 * 5) ? 'none' : '2px solid red')
+}
+const TodoItemContainerWithWarning = styled(TodoItemContainer)`
+  border-bottom: ${props => getBorderStyleForDate(new Date(props.createdAt), Date.now())}
+`
+```
+
+And set the test as below:
+```
+describe('getBorderStyleForDate', () => {
+    it('returns none when the date is less than 5 days ago', () => {
+
+    });
+    it('returns a border when the date is more than 5 days ago', () => {
+
+    });
+})
+```
