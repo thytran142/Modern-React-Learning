@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b511cfdb-b9f3-413f-904b-81ee78508be2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/todos/thunks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Modern-React-Learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Modern-React-Learning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/NewTodoForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/selectors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/NewTodoForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/NewTodoForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/TodoList.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todos/TodoListItem.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/TodoListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/TodoListItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/todos/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/todos/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/todos/reducers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +33,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1qwdYYyErAdCBNVTkhrrvOQHrVt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,10 +44,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.install">
     <configuration default="true" type="js.build_tools.npm">
       <command value="run" />
       <scripts />
@@ -71,6 +72,13 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="install" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="install" />
+      <node-interpreter value="$PROJECT_DIR$/../../../../Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/../Ex_Files_Building_Modern_Projects_React/Ex_Files_Building_Modern_Projects_React/Exercise Files/react-ecosystems-server/react-ecosystems-server/package.json" />
       <command value="run" />
@@ -83,13 +91,14 @@
     </configuration>
     <list>
       <item itemvalue="npm.install mock" />
+      <item itemvalue="npm.install" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -102,11 +111,17 @@
       <option name="presentableId" value="Default" />
       <updated>1617994634699</updated>
       <workItem from="1617994635747" duration="12000" />
-      <workItem from="1618331030960" duration="14158000" />
+      <workItem from="1618331030960" duration="16280000" />
+      <workItem from="1618407177589" duration="5019000" />
+      <workItem from="1618422855469" duration="5876000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

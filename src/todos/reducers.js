@@ -6,21 +6,21 @@ import {
     MARK_TODO_AS_COMPLETED,
     REMOVE_TODO
 } from "./actions";
-// Return true or false based on current action of our app
-export const isLoading = (state = false, action) => {
-    const { type } = action;
-    switch(type) {
-        case LOAD_TODOS_IN_PROGRESS:
-            return true;
-        case LOAD_TODO_SUCCESS:
-        case LOAD_TODOS_FAILURE:
-            return false;
-        default:
-            return state;
-    }
-}
 
-export const todos = (state = [], action) => {
+/**
+ * Instead of state {
+ *     data
+ *     isLoading
+ * }
+ *  we want to convert to
+ * state.todos: {
+ *     data: [...],
+ *     isLoading: true,
+ * }
+ */
+const initialState = { isLoading: false, data: []};
+
+export const todos = (state = initialState, action) => {
     // Everytime any action is fired from anywhere in our application, our reducers will get called.
     // When this happens, the 2 arguments that will get passed to a reducer are the current state of whatever resource
     // the reducer is managing. In this case it's an array of the current todo items in our application.
@@ -31,28 +31,50 @@ export const todos = (state = [], action) => {
     switch (type) {
         case LOAD_TODO_SUCCESS: {
             const { todos } = payload;
-            return todos;
+            return {
+                ...state,
+                isLoading: false,
+                data: todos
+            };
         }
         case CREATE_TODO: {
             const { todo } = payload;
-            return state.concat(todo);
+            return {
+                ...state,
+                data: state.data.concat(todo)
+            };
         }
         case REMOVE_TODO: {
             // way to rename
             const { todo: todoToRemove } = payload;
-            return state.filter(todo => todo.id !== todoToRemove.id);
+            return {
+                ...state,
+                data: state.data.filter(todo => todo.id !== todoToRemove.id)
+            }
         }
         case MARK_TODO_AS_COMPLETED: {
             const { todo: updatedTodo } = payload;
-            return state.map(todo => {
-                if (todo.id === updatedTodo.id) {
-                    return todo;
-                }
-            });
+            return {
+                ...state,
+                data: state.data.map(todo => {
+                    if (todo.id === updatedTodo.id) {
+                        return todo;
+                    }
+                })
+            }
         }
         case LOAD_TODOS_IN_PROGRESS:
+            return {
+                ...state,
+                isLoading: true
+            };
         case LOAD_TODOS_FAILURE:
+            return {
+                ...state,
+                isLoading: false
+            }
         default:
             return state;
     }
 }
+

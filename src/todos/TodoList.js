@@ -1,27 +1,38 @@
 import React, {useEffect} from 'react';
 import TodoListItem from "./TodoListItem";
 import NewTodoForm from "./NewTodoForm";
-import {markTodoAsCompleted, removeTodo} from "./actions";
+import {getCompleteTodos, getIncompleteTodos, getTodos, getTodosLoading} from './selectors';
 import {connect} from "react-redux";
 import {loadTodos, markTodoAsCompletedRequest, removeTodoRequest} from "./thunks";
+import styled from "styled-components";
 
-const TodoList = ({todos = [], onRemovePressed, onCompletedPressed, isLoading, startLoadingTodos}) => {
+const ListWrapper = styled.div`
+  max-width: 700px;
+  margin: auto;
+`;
+
+const TodoList = ({inCompleteTodos = [],completeTodos = [], onRemovePressed, onCompletedPressed, isLoading, startLoadingTodos}) => {
     useEffect(() => {
         startLoadingTodos();
     }, []);
     const loadingMessage = <div>Loading todos...</div>
-    const content =  (<div className="list-wrapper">
+    const content =  (<ListWrapper>
                 <NewTodoForm/>
-                {todos.map((todo, i) => <TodoListItem todo={todo} key={i} onRemovePressed={onRemovePressed}
+                <h3>Incomplete:</h3>
+                {inCompleteTodos.map((todo, i) => <TodoListItem todo={todo} key={i} onRemovePressed={onRemovePressed}
                                                       onCompletedPressed={onCompletedPressed}/>)}
-            </div>
+                <h3>Complete: </h3>
+                {completeTodos.map((todo, i) => <TodoListItem todo={todo} key={i} onRemovePressed={onRemovePressed}
+                                                            onCompletedPressed={onCompletedPressed}/>)}
+        </ListWrapper>
         );
     return isLoading ? loadingMessage : content;
     }
 ;
 const mapStateToProps = state => ({
-    todos: state.todos,
-    isLoading: state.isLoading
+    completedTodos: getCompleteTodos(state),
+    inCompleteTodos: getIncompleteTodos(state),
+    isLoading: getTodosLoading(state)
 })
 const mapDispatchToProps = dispatch => ({
     onRemovePressed: id => dispatch(removeTodoRequest(id)),

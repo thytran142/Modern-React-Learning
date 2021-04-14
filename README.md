@@ -527,3 +527,138 @@ export const loadTodos = () => async (dispatch, getState) => {
 
 Check the commit "Chapter 4: Redux Thunk"
 
+**Selectors**
+1. Components: displaying data we give them.
+2. Reducers: worry about making changes to the state
+3. Thunks: handle all of the side-effect logic and server communication.
+
+```
+const mapStateToProps = state => ({
+    todos: state.todos,
+    isLoading: state.isLoading
+})
+```
+
+Getting the data we need rom the state in this way requires our components, and more our mapStateToProps function to have an intimate knowledge of how our data 
+is stored in the state.
+
+We can do as below:
+```
+const mapStateToProps = state => ({
+    isLoading: getTodosLoading(state),
+    todos: getTodos(state),
+})
+```
+If we created and used these functions from the start, incorporating the isLoading property into our todos reducer, and moving the actual todos array into todos.data, or making 
+any other modifications to how our data is stored in the state of that matter, all of this would be a simple one line change.
+
+Often times, we want to pass our component's data that requires a little bit of computation to obtain. For example, if we had separate to-do lists for the todos that were 
+completed, and todos that were incomplete, this would require either our components or our mapStateToProps to include filtering logic. Neither of which is ideal.
+
+Another reason for selectors to exist: to give us a place to put the logic for transforming data in the store into data our components can use. We can simply use 
+getCompletedTodos and getIncompleteTodos, each of which contains the logic necessary for filtering all the todos in the redux store into specific sub-lists. 
+
+
+For example, currently we have:
+
+```
+/**
+ * Instead of state {
+ *     data
+ *     isLoading
+ * }
+ *  we want to convert to
+ * state.todos: {
+ *     data: [...],
+ *     isLoading: true,
+ * }
+ */
+```
+We can use selector and reducers to modify the way we want to structure, and we don't need to modify the whole code.
+
+_Combing selectors with Reselect_
+
+Topic: We want to separate 2 todo list: 1 is completed, 1 is not completed.
+
+First of all, we think we can put somewhere under props of TodoList.js:
+```
+const mapStateToProps = state => ({
+    todos: getTodos(state),
+    isLoading: getTodosLoading(state)
+})
+```
+so under the component, you can display data correctly: completed and uncompleted.
+
+However, now we have selectors, we think that a good way is to implement inside selectors.js
+
+```
+export const getIncompleteTodos = 
+```
+Here we stop for a minute. Whenever we want to use a selector that may call another selector, there is a tool called reselector that to build 
+more complex logic on top of simpler selectors.
+
+```
+npm install reselect
+```
+
+```
+import {createSelector} from 'reselect';
+
+export const getIncompleteTodos = createSelector(
+    getTodos,
+    getTodosLoading,
+    (todos, isLoading) => isLoading ? [] : todos.filter(todo => !todo.isCompleted),
+);
+```
+
+We can pass with many functions there, and so on and so on..
+
+**Styled Components**
+Currently we have Component.js and Component.css:
+
+1. We need one css for each component.
+2. Let's say in some application, we have a list of items and that at any time, one of these components can be selected. Now if we 
+are using CSS modules to do our styling, what we have to do is set the class on our list items dynamically depending on whether or not a given list item is selected. This is an unecessary intermediate step. It doesn't seem like this kind of logic should be directly inside our components.
+
+
+Styled-Components: allow us to define styles of our components inside jss file.
+
+Example:
+```
+<ListItem ~~className={item.selected ? "selected" : "not-selected"}~~ selected={true}>
+```
+
+```
+import styled from "styled-components";
+const BigRedText = styled.div`
+      font-size: 48px;
+      color: #FF0000;
+`;
+
+<BigRedText>I'm a styled component</BigRedText>
+```
+
+_Where to put our Styled Components?_
+
+Exception: Button, modal, forms... will be another file, example user-interface.
+
+OOP extension styled component example:
+
+```
+const TodoItemContainer = styled.div`
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 8px;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 4px 8px grey;
+`;
+
+const TodoItemContainerWithWarning = styled(TodoItemContainer)`
+  border-bottom: ${props => (new Date(props.createdAt) > new Date(Date.now() - 8640000 * 5)) ? 'none' : '2px solid red'};
+`
+
+
+ const Container = todo.isCompleted ? TodoItemContainer : TodoItemContainerWithWarning;
+```
+
